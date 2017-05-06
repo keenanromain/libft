@@ -6,7 +6,7 @@
 /*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 10:56:24 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/13 01:30:52 by kromain          ###   ########.fr       */
+/*   Updated: 2017/03/15 20:12:02 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	size_t count;
 
 	count = 0;
-	while (*s++)
+	while (s[count])
 		count++;
 	return (count);
 }
