@@ -6,7 +6,7 @@
 #    By: kromain <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/09 13:51:22 by kromain           #+#    #+#              #
-#    Updated: 2017/01/21 11:44:42 by kromain          ###   ########.fr        #
+#    Updated: 2017/06/26 09:43:33 by kromain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,20 +75,46 @@ SRCS = \
 		ft_atol.c		\
 		ft_strclen.c	\
 		ft_lstsize.c	\
-		ft_isspace.c
+		ft_isspace.c	\
+		ft_atoi_array.c	\
+		ft_numcount.c	\
+		ft_numlen.c		\
+		ft_abs.c		\
+		ft_strcdup.c	\
+		ft_exp.c		\
+		ft_sqrt.c		\
+		ft_isprime.c	\
+		ft_swap.c		\
+		ft_pow.c		\
+		ft_strccpy.c	\
+		ft_strcjoin.c	\
+		ft_revsign.c	\
+		get_next_line.c
+
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Werror -Wextra -c $(SRCS)
-	ar rcs $(NAME) $(OBJS)
+	@echo "\033[01;34mCompiling...\033[0m"
+	@gcc -Wall -Werror -Wextra -c $(SRCS)
+	@ar rcs $(NAME) $(OBJS)
+	@echo "\033[01;33m _      ____  ____   _____  ______ \033[0m"
+	@echo "\033[01;33m| |    |    ||    \ |     ||      |\033[0m"
+	@echo "\033[01;33m| |     |  | |  o  )|   __||      |\033[0m"
+	@echo "\033[01;33m| |___  |  | |     ||  |_  |_|  |_|\033[0m"
+	@echo "\033[01;33m|     | |  | |  O  ||   _]   |  |  \033[0m"
+	@echo "\033[01;33m|     | |  | |     ||  |     |  |  \033[0m"
+	@echo "\033[01;33m|_____||____||_____||__|     |__|  \033[0m"
+                                  
 
 clean:
-	rm -f $(OBJS)
+	@echo "\033[01;37mCleaning...\033[0m"
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "\033[01;31mRemoved Compiled Lib\033[0m"
+	@rm -f $(NAME)
 
 re: fclean all

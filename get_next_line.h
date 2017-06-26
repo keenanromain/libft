@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclen.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 17:58:02 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/20 18:08:44 by kromain          ###   ########.fr       */
+/*   Created: 2017/01/24 18:57:27 by kromain           #+#    #+#             */
+/*   Updated: 2017/03/16 21:21:17 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int		ft_strclen(const char *s, char c)
-{
-	int count;
+# include <fcntl.h>
+# include "libft.h"
 
-	count = 0;
-	while (s[count] && s[count] != c)
-		count++;
-	return (count);
-}
+# define BUFF_SIZE 32
+
+int		get_next_line(const int fd, char **line);
+
+#endif

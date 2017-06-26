@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclen.c                                       :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 17:58:02 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/20 18:08:44 by kromain          ###   ########.fr       */
+/*   Created: 2017/01/05 17:21:01 by kromain           #+#    #+#             */
+/*   Updated: 2017/01/13 16:48:08 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strclen(const char *s, char c)
+int	ft_pow(int x, int n)
 {
-	int count;
+	int	a;
 
-	count = 0;
-	while (s[count] && s[count] != c)
-		count++;
-	return (count);
+	if (n == 0)
+		return (1);
+	else if (n % 2 == 0)
+	{
+		a = ft_pow(x, n / 2);
+		return (a * a);
+	}
+	else
+		return (x * ft_pow(x, n - 1));
 }

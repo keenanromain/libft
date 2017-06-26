@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
+
+# define BUFF_SIZE 32
 
 typedef struct		s_list
 {
@@ -24,7 +27,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-int					ft_atoi(char *str);
+int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
@@ -85,8 +88,23 @@ void				ft_lstiter(t_list *lst, void (*f) (t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f) (t_list *elem));
 char				*ft_strndup(const char *s1, size_t n);
 long				ft_atol(const char *str);
-size_t				ft_strclen(const char *s, char c);
+int					ft_strclen(const char *s, char c);
 int					ft_lstsize(t_list *lst);
 int					ft_isspace(int c);
+int					get_next_line(int const fd, char **line);
+int					*ft_atoi_array(const char *s);
+int					ft_numlen(const char *s);
+int					ft_numcount(const char *s);
+long				ft_abs(long i);
+char				*ft_strcdup(const char *s, char c);
+int					ft_exp(int base, int power);
+int					ft_sqrt(int n);
+int					ft_isprime(int n);
+void				ft_swap(int *a, int *b);
+int					ft_pow(int x, int n);
+int					ft_strccpy(char **dst, char *src, char c);
+char				*ft_strcjoin(char const *s, char c);
+int					ft_revsign(int num);
+
 
 #endif

@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclen.c                                       :+:      :+:    :+:   */
+/*   ft_strcjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 17:58:02 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/20 18:08:44 by kromain          ###   ########.fr       */
+/*   Created: 2017/01/20 20:01:19 by kromain           #+#    #+#             */
+/*   Updated: 2017/01/20 20:07:47 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strclen(const char *s, char c)
+char	*ft_strcjoin(char const *s, char c)
 {
-	int count;
+	char	*str;
+	size_t	i;
+	size_t	len;
 
-	count = 0;
-	while (s[count] && s[count] != c)
-		count++;
-	return (count);
+	if (!s || !c)
+		return (NULL);
+	len = ft_strlen(s);
+	if (!(str = ft_strnew(len + 1)))
+		return (NULL);
+	i = -1;
+	while (++i < len)
+		*(str + i) = *(s + i);
+	*(str + i) = c;
+	return (str);
 }

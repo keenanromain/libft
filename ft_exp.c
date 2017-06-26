@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclen.c                                       :+:      :+:    :+:   */
+/*   ft_exp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 17:58:02 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/20 18:08:44 by kromain          ###   ########.fr       */
+/*   Created: 2017/05/07 13:39:11 by kromain           #+#    #+#             */
+/*   Updated: 2017/05/13 01:34:26 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strclen(const char *s, char c)
+int		ft_exp(int base, int power)
 {
-	int count;
-
-	count = 0;
-	while (s[count] && s[count] != c)
-		count++;
-	return (count);
+	return (power == 0 ? 1 : base * ft_exp(base, --power));
 }

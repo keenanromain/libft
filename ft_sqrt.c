@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclen.c                                       :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 17:58:02 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/20 18:08:44 by kromain          ###   ########.fr       */
+/*   Created: 2017/01/07 13:39:11 by kromain           #+#    #+#             */
+/*   Updated: 2017/01/13 01:34:26 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strclen(const char *s, char c)
+static int	ft_sqrtaux(long long n, long long tmp)
 {
-	int count;
+	if (tmp <= 0)
+		return (0);
+	return ((tmp * tmp) <= n ? tmp : ft_sqrtaux(n, --tmp));
+}
 
-	count = 0;
-	while (s[count] && s[count] != c)
-		count++;
-	return (count);
+int			ft_sqrt(int n)
+{
+	return (ft_sqrtaux(n, n));
 }

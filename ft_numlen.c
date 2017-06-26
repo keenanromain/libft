@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclen.c                                       :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 17:58:02 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/20 18:08:44 by kromain          ###   ########.fr       */
+/*   Created: 2017/01/05 17:21:01 by kromain           #+#    #+#             */
+/*   Updated: 2017/01/13 16:48:08 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strclen(const char *s, char c)
+int		ft_numlen(const char *s)
 {
-	int count;
+	int size;
 
-	count = 0;
-	while (s[count] && s[count] != c)
-		count++;
-	return (count);
+	size = 0;
+	if (*s == '-')
+	{
+		size++;
+		s++;
+	}
+	while (*s && ft_isdigit(*s))
+	{
+		size++;
+		s++;
+	}
+	return (size);
 }
