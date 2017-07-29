@@ -89,6 +89,10 @@ SRCS = \
 		ft_strccpy.c	\
 		ft_strcjoin.c	\
 		ft_revsign.c	\
+		ft_downcase.c	\
+		ft_upcase.c		\
+		ft_strnchr.c	\
+		ft_putnstr.c	\
 		get_next_line.c
 
 

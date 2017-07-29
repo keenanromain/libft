@@ -105,6 +105,10 @@ int					ft_pow(int x, int n);
 int					ft_strccpy(char **dst, char *src, char c);
 char				*ft_strcjoin(char const *s, char c);
 int					ft_revsign(int num);
+void				ft_downcase(char *s);
+void				ft_upcase(char *s);
+void				ft_putnstr(char *s, size_t n);
+int					ft_strnchr(char *s, char c);
 
 
 #endif
