@@ -101,24 +101,25 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	@echo "\033[01;34mCompiling...\033[0m"
+	@echo "\033[01;36mCompiling...\033[0m"
 	@gcc -Wall -Werror -Wextra -c $(SRCS)
 	@ar rcs $(NAME) $(OBJS)
-	@echo "\033[01;33m _      ____  ____   _____  ______ \033[0m"
-	@echo "\033[01;33m| |    |    ||    \ |     ||      |\033[0m"
-	@echo "\033[01;33m| |     |  | |  o  )|   __||      |\033[0m"
-	@echo "\033[01;33m| |___  |  | |     ||  |_  |_|  |_|\033[0m"
-	@echo "\033[01;33m|     | |  | |  O  ||   _]   |  |  \033[0m"
-	@echo "\033[01;33m|     | |  | |     ||  |     |  |  \033[0m"
-	@echo "\033[01;33m|_____||____||_____||__|     |__|  \033[0m"
+	@echo "\033[01;36m _      ____  ____   _____  ______ \033[0m"
+	@echo "\033[01;36m| |    |    ||    \ |     ||      |\033[0m"
+	@echo "\033[01;36m| |     |  | |  o  )|   __||      |\033[0m"
+	@echo "\033[01;36m| |___  |  | |     ||  |_  |_|  |_|\033[0m"
+	@echo "\033[01;36m|     | |  | |  O  ||   _]   |  |  \033[0m"
+	@echo "\033[01;36m|     | |  | |     ||  |     |  |  \033[0m"
+	@echo "\033[01;36m|_____||____||_____||__|     |__|  \033[0m"
                                   
 
 clean:
-	@echo "\033[01;37mCleaning...\033[0m"
+	@echo "\033[01;39mCleaning Libft...\033[0m"
 	@rm -f $(OBJS)
 
-fclean: clean
-	@echo "\033[01;31mRemoved Compiled Lib\033[0m"
+fclean:
+	@rm -f $(OBJS)
 	@rm -f $(NAME)
+	@echo "\033[01;31mRemoved Compiled Libft\033[0m"
 
-re: fclean all
+re: clean fclean all

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_upcase(char *s)
+char	*ft_upcase(char *s)
 {
 	int i;
 
@@ -20,5 +20,5 @@ void	ft_upcase(char *s)
 	if (s)
 		while (s[++i])
 			s[i] = ft_toupper(s[i]);
+	return (s);
 }
-

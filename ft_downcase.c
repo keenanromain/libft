@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_downcase(char *s)
+char	*ft_downcase(char *s)
 {
 	int i;
 
@@ -20,4 +20,5 @@ void	ft_downcase(char *s)
 	if (s)
 		while (s[++i])
 			s[i] = ft_tolower(s[i]);
+	return (s);
 }
