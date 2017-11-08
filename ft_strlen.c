@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlen.c                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kromain <kromain@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/05 10:56:24 by kromain           #+#    #+#             */
-/*   Updated: 2017/03/15 20:12:02 by kromain          ###   ########.fr       */
+/*   Created: 2016/10/26 15:27:25 by kromain           #+#    #+#             */
+/*   Updated: 2016/10/26 15:27:30 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t count;
+	int i;
 
-	count = 0;
-	while (s[count])
-		count++;
-	return (count);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

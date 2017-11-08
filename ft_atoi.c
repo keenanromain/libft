@@ -3,33 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kromain <kromain@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/05 17:21:01 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/13 16:48:08 by kromain          ###   ########.fr       */
+/*   Created: 2017/01/22 17:24:05 by kromain           #+#    #+#             */
+/*   Updated: 2017/01/22 17:24:05 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
-{
-	long long	s;
-	int			n;
+#include "libft.h"
 
-	n = 1;
-	s = 0;
-	while ((*str >= 9 && *str <= 13) || *str == ' ')
-		str++;
-	if (*str == 45 || *str == 43)
+int		ft_atoi(const char *str)
+{
+	int i;
+	int nb;
+	int flag;
+
+	i = 0;
+	nb = 0;
+	flag = 0;
+	while ((str[i] == '\n') || (str[i] == '\v') || (str[i] == '\f')
+	|| (str[i] == ' ') || (str[i] == '\r') || (str[i] == '\t'))
+		i++;
+	if (str[i] == '-')
+		flag = 1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		if (*str == 45)
-			n = -1;
-		str++;
+		nb = nb * 10;
+		nb = nb + str[i] - '0';
+		i++;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		s = s * 10 + (*str);
-		s = s - '0';
-		str++;
-	}
-	return (n * s);
+	return (flag == 1 ? -nb : nb);
 }

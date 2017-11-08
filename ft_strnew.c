@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kromain <kromain@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 12:10:25 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/12 21:57:56 by kromain          ###   ########.fr       */
+/*   Created: 2016/01/07 12:59:25 by kromain           #+#    #+#             */
+/*   Updated: 2016/01/11 15:46:40 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 char	*ft_strnew(size_t size)
 {
-	char *fresh_string;
+	char			*str;
+	unsigned int	i;
 
-	fresh_string = (char *)malloc(sizeof(char) * size + 1);
-	if (fresh_string == NULL)
+	i = 0;
+	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	else
-	{
-		ft_memset(fresh_string, '\0', size + 1);
-		return (fresh_string);
-	}
+	while (i < size)
+		str[i++] = '\0';
+	str[i] = '\0';
+	return (str);
 }

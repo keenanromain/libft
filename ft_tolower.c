@@ -3,22 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kromain <kromain@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/06 18:56:31 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/06 19:03:47 by kromain          ###   ########.fr       */
+/*   Created: 2017/01/12 19:09:04 by kromain           #+#    #+#             */
+/*   Updated: 2017/01/12 19:09:04 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int		ft_tolower(int c)
 {
-	int b;
-
-	b = c;
-	if (b >= 65 && b <= 90)
-	{
-		b += 32;
-		return (b);
-	}
+	if (c <= 90 && c >= 65)
+		c = c + 32;
 	return (c);
 }

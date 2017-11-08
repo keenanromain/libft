@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kromain <kromain@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/07 13:39:11 by kromain           #+#    #+#             */
-/*   Updated: 2017/05/13 01:34:26 by kromain          ###   ########.fr       */
+/*   Created: 2017/01/10 20:08:31 by kromain           #+#    #+#             */
+/*   Updated: 2017/01/22 16:53:38 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	ft_abs(long i)
+ptrdiff_t	ft_abs(ptrdiff_t n)
 {
-	return (i < 0 ? i * -1 : i);
+	return (n < 0 ? -n : n);
 }

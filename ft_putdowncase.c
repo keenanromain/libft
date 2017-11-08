@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_putdowncase.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kromain <kromain@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 18:23:16 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/10 18:23:16 by kromain          ###   ########.fr       */
+/*   Created: 2017/08/21 17:28:09 by kromain           #+#    #+#             */
+/*   Updated: 2017/09/09 17:28:09 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isdigit(int c)
+void	ft_putdowncase(char *s)
 {
-	return ((c >= 48 && c <= 57) ? 1 : 0);
+	int i;
+
+	if (!s)
+		return ;
+	i = -1;
+	while (s[++i])
+	{
+		if (s[i] <= 90 && s[i] >= 65)
+			s[i] = s[i] + 32;
+		ft_putchar(s[i]);
+	}
 }

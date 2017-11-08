@@ -3,49 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kromain <kromain@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 16:10:10 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/19 21:37:27 by kromain          ###   ########.fr       */
+/*   Created: 2016/10/29 16:28:20 by kromain           #+#    #+#             */
+/*   Updated: 2017/07/10 12:44:30 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_whatsign(int *n)
+static char		ft_sign(ptrdiff_t n)
 {
-	if (*n < 0)
-	{
-		*n *= -1;
-		return (1);
-	}
-	return (0);
+	if (n > 0)
+		return ('+');
+	else if (n < 0)
+		return ('-');
+	return ('0');
 }
 
-char			*ft_itoa(int n)
+char			*ft_itoa(ptrdiff_t n)
 {
-	int		temp;
-	int		positions;
-	int		sign;
-	char	*string;
+	char		*str;
+	int			i;
+	ptrdiff_t	tmp;
+	ptrdiff_t	nbr;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	temp = n;
-	positions = 2;
-	sign = ft_whatsign(&n);
-	while (temp /= 10)
-		positions++;
-	positions += sign;
-	if (!(string = (char *)malloc(sizeof(char) * positions)))
-		return (NULL);
-	string[--positions] = '\0';
-	while (positions--)
+	tmp = ft_sign(n) == '-' ? -n : n;
+	nbr = tmp;
+	i = ft_sign(n) != '+' ? 1 : 0;
+	while (tmp)
 	{
-		string[positions] = (n % 10) + '0';
-		n /= 10;
+		i++;
+		tmp = tmp / 10;
 	}
-	if (sign == 1)
-		string[0] = '-';
-	return (string);
+	str = ft_strnew(i);
+	if (str == NULL)
+		return (NULL);
+	str[0] = ft_sign(n);
+	while (nbr)
+	{
+		i--;
+		str[i] = ft_abs(nbr % 10) + '0';
+		nbr = nbr / 10;
+	}
+	return (str);
 }

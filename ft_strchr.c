@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kromain <kromain@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/07 14:48:14 by kromain           #+#    #+#             */
-/*   Updated: 2017/01/12 20:05:35 by kromain          ###   ########.fr       */
+/*   Created: 2017/01/16 17:56:53 by kromain           #+#    #+#             */
+/*   Updated: 2017/01/16 17:56:53 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,9 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	char *catch;
-
-	catch = (char *)s;
-	while (*catch != c)
-	{
-		if (*catch == '\0')
-			return (NULL);
-		catch++;
-	}
-	return (catch);
+	while (*s && *s != c)
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
 }

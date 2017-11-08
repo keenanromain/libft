@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kromain <kromain@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/05 13:25:52 by kromain           #+#    #+#             */
-/*   Updated: 2016/12/05 13:25:53 by kromain          ###   ########.fr       */
+/*   Created: 2017/01/12 12:42:17 by kromain           #+#    #+#             */
+/*   Updated: 2017/02/01 15:39:25 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,23 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*tmp;
+	char	*str;
+	size_t	len1;
+	size_t	len2;
 
-	if (!s1 || !s2)
-		return (0);
-	if ((tmp = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
-		ft_strcat(ft_strcpy(tmp, (char *)s1), s2);
-	return (tmp);
+	if (!s1 && !s2)
+		return (NULL);
+	if (s1 == NULL)
+		len1 = 0;
+	else
+		len1 = ft_strlen(s1);
+	if (s2 == NULL)
+		len2 = 0;
+	else
+		len2 = ft_strlen(s2);
+	if ((str = ft_strnew(len1 + ft_strlen(s2) + 1)) == NULL)
+		return (NULL);
+	(len1 == 0) ? str : ft_strcpy(str, s1);
+	(len2 == 0) ? str : ft_strcpy((str + len1), s2);
+	return (str);
 }
