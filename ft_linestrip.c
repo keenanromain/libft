@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_linestrip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/24 18:57:27 by kromain           #+#    #+#             */
-/*   Updated: 2017/03/16 21:21:17 by kromain          ###   ########.fr       */
+/*   Created: 2017/03/12 12:07:38 by kromain           #+#    #+#             */
+/*   Updated: 2017/03/12 17:31:46 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
+char	*ft_linestrip(char *s, char c)
+{
+	int		i;
+	int		size;
+	int		k;
+	char	*s1;
 
-# define BUFF_SIZE 32
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+	size = ft_strlen(s);
+	i = 0;
+	while (s[i] != c && s[i])
+		i++;
+	i++;
+	if ((s1 = ft_strnew(size - i)) == 0)
+		return (0);
+	k = 0;
+	while (i < size)
+		s1[k++] = s[i++];
+	ft_bzero(s, size);
+	s = ft_strcpy(s, s1);
+	free(s1);
+	return (s);
+}

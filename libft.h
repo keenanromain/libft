@@ -20,7 +20,7 @@
 # include <stdint.h>
 # include <fcntl.h>
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE 8
 
 typedef struct		s_list
 {
@@ -28,6 +28,13 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_gnl
+{
+	char			buf[BUFF_SIZE + 1];
+	int				fd;
+	struct s_gnl	*next;
+}					t_gnl;
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
@@ -93,11 +100,11 @@ long				ft_atol(const char *str);
 int					ft_strclen(const char *s, char c);
 int					ft_lstsize(t_list *lst);
 int					ft_isspace(int c);
-int					get_next_line(int const fd, char **line);
 int					*ft_atoi_array(const char *s);
 int					ft_numlen(const char *s);
 int					ft_numcount(const char *s);
 ptrdiff_t			ft_abs(ptrdiff_t n);
+int					ft_digitnum(int n);
 char				*ft_strcdup(const char *s, char c);
 int					ft_exp(int base, int power);
 int					ft_sqrt(int n);
@@ -114,5 +121,12 @@ int					ft_strnchr(char *s, char c);
 void				ft_putdowncase(char *s);
 char				*ft_itoa_u(unsigned long long n, unsigned int base);
 int					ft_printf(const char *format, ...);
+int					get_next_line(const int fd, char **line);
+int					buf_check(char *buf);
+int					nl_hunter(char *buf, char *temp, char **line, const int fd);
+int					read_buf(char *buf, char *temp, char **line, const int fd);
+t_gnl				*gnl_list(t_gnl *head, int fd);
+char				*ft_linestrip(char *s, char c);
+char				*ft_linetrim(char *s, char c);
 
 #endif

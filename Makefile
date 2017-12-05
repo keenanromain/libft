@@ -74,6 +74,9 @@ SRCS = \
 		ft_lstnew.c			\
 		ft_lstmap.c			\
 		ft_strndup.c		\
+		get_next_line.c		\
+		ft_linestrip.c		\
+		ft_linetrim.c		\
 		ft_atol.c			\
 		ft_strclen.c		\
 		ft_lstsize.c		\
@@ -82,6 +85,7 @@ SRCS = \
 		ft_numcount.c		\
 		ft_numlen.c			\
 		ft_abs.c			\
+		ft_digitnum.c		\
 		ft_strcdup.c		\
 		ft_exp.c			\
 		ft_sqrt.c			\
@@ -108,7 +112,6 @@ SRCS = \
 		string.c			\
 		unsigned_number.c	\
 		ft_printf.c			\
-		get_next_line.c
 
 OBJS = $(SRCS:.c=.o)
 

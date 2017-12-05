@@ -3,93 +3,123 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kromain <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kromain <kromain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/13 18:29:37 by kromain           #+#    #+#             */
-/*   Updated: 2017/03/21 10:30:09 by kromain          ###   ########.fr       */
+/*   Created: 2017/03/11 13:23:08 by kromain           #+#    #+#             */
+/*   Updated: 2017/07/29 14:43:48 by kromain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-int		check_previous(char **leftovers, char **line)
+int		get_next_line(const int fd, char **line)
 {
-	char		*tmp;
-	char		*swap;
+	char			*temp;
+	int				i;
+	static t_gnl	*head;
+	t_gnl			*node;
 
-	if ((tmp = ft_strchr(*leftovers, '\n')))
-	{
-		*tmp = '\0';
-		*line = ft_strdup(*leftovers);
-		swap = ft_strdup(tmp + 1);
-		ft_strdel(leftovers);
-		*leftovers = ft_strdup(swap);
-		ft_strdel(&swap);
-		tmp = NULL;
-		return (1);
-	}
-	return (0);
-}
-
-int		check_current(char *buffer, char **leftovers, char **line)
-{
-	char		*tmp;
-	char		*swap;
-
-	if ((tmp = ft_strchr(buffer, '\n')))
-	{
-		*tmp = '\0';
-		*line = ft_strjoin(*leftovers, buffer);
-		swap = ft_strdup(tmp + 1);
-		ft_strdel(leftovers);
-		*leftovers = ft_strdup(swap);
-		ft_strdel(&swap);
-		tmp = NULL;
-		ft_strdel(&buffer);
-		return (1);
-	}
-	return (0);
-}
-
-int		find_return(int size, char *buffer, char **leftovers, char **line)
-{
-	if (size < 0)
+	if (!line)
 		return (-1);
-	ft_strdel(&buffer);
-	if (**leftovers)
+	if (head == NULL)
+		head = gnl_list(head, fd);
+	node = gnl_list(head, fd);
+	if ((temp = ft_strnew(BUFF_SIZE)) == 0)
+		return (-1);
+	if ((i = buf_check(node->buf)) >= 0)
 	{
-		*line = ft_strdup(*leftovers);
-		ft_strdel(leftovers);
+		temp = ft_strncpy(temp, node->buf, i);
+		*line = temp;
+		*node->buf = *ft_linestrip(node->buf, '\n');
 		return (1);
 	}
-	*line = NULL;
-	ft_strdel(leftovers);
-	return (0);
+	i = nl_hunter(node->buf, temp, line, fd);
+	if (i == 1)
+		return (1);
+	else if (i == 0)
+		return (0);
+	return (-1);
 }
 
-int		get_next_line(int const fd, char **line)
+int		buf_check(char *buf)
 {
-	static char	*leftovers;
-	char		*buffer;
-	int			size;
-	char		*swap;
+	int				i;
 
-	if (fd < 0 || line == NULL || BUFF_SIZE < 1)
-		return (-1);
-	if (!leftovers)
-		leftovers = ft_strnew(0);
-	else if (check_previous(&leftovers, line))
-		return (1);
-	buffer = ft_strnew(BUFF_SIZE);
-	while ((size = (read(fd, buffer, BUFF_SIZE))) > 0)
+	i = 0;
+	while (buf[i])
 	{
-		buffer[size] = '\0';
-		if (check_current(buffer, &leftovers, line))
+		if (buf[i] == '\n')
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+int		nl_hunter(char *buf, char *temp, char **line, const int fd)
+{
+	int			read_ret;
+	char		*new_temp;
+
+	new_temp = ft_strjoin(temp, buf);
+	free(temp);
+	temp = new_temp;
+	ft_bzero(buf, BUFF_SIZE + 1);
+	read_ret = read_buf(buf, temp, line, fd);
+	if (read_ret == 1)
+		return (1);
+	return (read_ret);
+}
+
+int		read_buf(char *buf, char *temp, char **line, const int fd)
+{
+	int			read_ret;
+	char		*new_temp;
+
+	while ((read_ret = read(fd, buf, BUFF_SIZE)) > 0)
+	{
+		new_temp = ft_strjoin(temp, buf);
+		free(temp);
+		temp = new_temp;
+		if (buf_check(buf) >= 0)
+		{
+			temp = ft_linetrim(temp, '\n');
+			*line = temp;
+			buf = ft_linestrip(buf, '\n');
 			return (1);
-		swap = ft_strjoin(leftovers, buffer);
-		ft_strdel(&leftovers);
-		leftovers = ft_strdup(swap);
-		ft_strdel(&swap);
+		}
+		ft_bzero(buf, BUFF_SIZE + 1);
 	}
-	return (find_return(size, buffer, &leftovers, line));
+	if (read_ret == 0 && ft_strlen(temp) > 0)
+	{
+		*line = temp;
+		ft_bzero(buf, BUFF_SIZE + 1);
+		return (1);
+	}
+	return (read_ret);
+}
+
+t_gnl	*gnl_list(t_gnl *head, int fd)
+{
+	t_gnl		*node;
+
+	if (head == NULL)
+	{
+		if (!(node = (t_gnl *)malloc(sizeof(t_gnl))))
+			return (0);
+		node->fd = fd;
+		ft_bzero(node->buf, BUFF_SIZE + 1);
+		node->next = NULL;
+		return (node);
+	}
+	while (fd != head->fd && head->next != NULL)
+		head = head->next;
+	if (fd == head->fd)
+		return (head);
+	if (!(node = (t_gnl *)malloc(sizeof(t_gnl))))
+		return (0);
+	node->fd = fd;
+	ft_bzero(node->buf, BUFF_SIZE + 1);
+	head->next = node;
+	node->next = NULL;
+	return (node);
 }
